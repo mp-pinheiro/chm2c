@@ -56,6 +56,7 @@ class Track:
 		tempo = mido.bpm2tempo(self.tempo)
 		sectionEnd = numerator ** 2 * self.ticksPerBeat
 		sectionNotes = []
+		lastSection = 1
 
 		def closeSection(sectionNotes):
 			# Close section
@@ -63,7 +64,8 @@ class Track:
 			sectionNotes = []
 
 		for note in self.notes:
-			if note.position >= sectionEnd:
+			if note.position >= sectionEnd*lastSection:
+				lastSection += 1
 				closeSection(sectionNotes)
 			
 			# Add note to section
