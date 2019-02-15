@@ -15,6 +15,6 @@ class Note:
 		firstOctave = pitch - (octaves * 12)
 		return firstOctave % 5
 
-	def convertToChart(self, tempo):
-		return "\t{} = N {} {}\n".format(self.position, self.getConvertedPitch(self.pitch), self.duration)
+	#def convertToChart(self, tempo):
+		#return "\t{} = N {} {}\n".format(self.position, self.getConvertedPitch(self.pitch), self.duration)
 		
