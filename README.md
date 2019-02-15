@@ -25,10 +25,10 @@ Alright, this thing is a buggy mess, but it works. Kind of. Feel free to fork th
 + Scan songs on Clone Hero and have fun.
 
 # Errors
-![Unknown](https://i.imgur.com/09uHlII.png)
+![Unknown](https://i.imgur.com/09uHlII.png)  
 Something broke with the program, not much can be done, try another midi. If you know python, you can take out the "except" and check out the error. You can also create an issue here on Github, put the midi there and I'll take a look when I have some free time.
 
-![Can't play song](https://i.imgur.com/IBeTxEW.png)
+![Can't play song](https://i.imgur.com/IBeTxEW.png)  
 Something is wrong with the 'song.ogg' file. Did you render the ogg file? Did you rename the rendered ogg to 'song.ogg'?
 
 # How to python
