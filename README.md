@@ -25,11 +25,27 @@ Alright, this thing is a buggy mess, but it works. Kind of. Feel free to fork th
 + Scan songs on Clone Hero and have fun.
 
 # Errors
-![Unknown](https://i.imgur.com/09uHlII.png)  
-Something broke with the program, not much can be done, try another midi. If you know python, you can take out the "except" and check out the error. You can also create an issue here on Github, put the midi there and I'll take a look when I have some free time.
+Those will for sure occur, so here's a little list. If you run into an error that can't be solved by following the instructions, feel free to create an issue here on Github, put the midi file there and I'll take a look when I have some free time. Don't forget to also put in the error from the command prompt.
 
+## Unknown Error
+![Unknown](https://i.imgur.com/09uHlII.png)  
+If this happened, something broke with the program, and not much can be done, try another midi. If you know python, check out the error on the command prompt.
+
+## Can't play song
 ![Can't play song](https://i.imgur.com/IBeTxEW.png)  
 Something is wrong with the 'song.ogg' file. Did you render the ogg file? Did you rename the rendered ogg to 'song.ogg'?
+
+## My song is 'wrong'
+There are a couple of possible problems that may happen. Take a look at the list below.
+
+### Out of tempo / unsynced 
+The program is ready to deal with most standardly written songs. That means 4/4, constant tempo songs. The weirder the midi structure, the bigger the chance of the program getting lost. Tempo changes *may* work fine, while time signature changes won't work what so ever. The way notes are placed is very dependent on the time signature. If you want to implement this, feel free to do so, I'll take a look at your code and merge it.
+
+### Weird notes / same part with different notes
+The algorithm for placing notes is far from perfect. If weird notes are the only problem, try changing the section size. The ways notes are spread depends on how they're read. If a group of notes has a wide range of pitches, a smaller section is better, for similar pitches, bigger sections are better. This means that if a song part is interpreted in different section, it may have different notes on Clone Hero. I'm open to ideas for improving the algorithm!
+
+### Has no notes
+When the midi file is loaded, the number of notes appears on the side of each track. It's fairly common for midi writers to put empty tracks with their names and so one. Just choose a track that is not empty. If you chose a non empty track and the song is still empty, that's most likely a bug. Feel free to report it here.
 
 # How to python
 + Install miniconda: https://conda.io/miniconda.html
