@@ -147,11 +147,13 @@ except Exception as e:
 	os._exit(1)
 
 choice = IntVar()
+choice.set(1)
 
 for counter in range(1, len(tracks)):
 	track = tracks[counter]
-	Radiobutton(window, text=track.name + '(' + str(len(track)) + ' notes)', variable=choice, value=counter).pack(anchor=W)
-	counter += 1 
+	r = Radiobutton(window, text=track.name + '(' + str(len(track)) + ' notes)', variable=choice, value=counter)
+	r.pack(anchor=W)
+
 Label(window, text="Section size:").pack(anchor=W)
 sChoice = IntVar()
 sChoice.set(1)
