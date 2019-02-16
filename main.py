@@ -51,7 +51,7 @@ def getTempoString(tempos, ticksPerBeat):
 		string += '\t{} = B {}000\n'.format(int(msg.time * Track.RESOLUTION // ticksPerBeat), mido.tempo2bpm(msg.tempo))
 	return string
 
-def createChartFile(mid, track):
+def createChartFile(mid, track, sectionSizeMod):
 	file = open(SONG_NAME + '/notes.chart', 'w')
 	tempoString = getTempoString(getTempos(mid), mid.ticks_per_beat)
 	header = """[Song]
@@ -69,7 +69,7 @@ def createChartFile(mid, track):
 	file.write(header)
 	#track = getHighestNoteTrack(getAllTracks(mid))
 	#track = getAllTracks(mid)[1]
-	file.write(track.generateChart())
+	file.write(track.generateChart(sectionSizeMod))
 	file.write('}')
 	file.close()
 
@@ -117,12 +117,12 @@ def createTrackByMid(mid, midTrack):
 
 	return track
 
-def generateSong(mid, track, filename):
+def generateSong(mid, track, sectionSizeMod, filename):
 	if not os.path.exists(SONG_NAME):
 		os.makedirs(SONG_NAME)
 	
 	createIniFile(mid)
-	createChartFile(mid, track)
+	createChartFile(mid, track, sectionSizeMod)
 	
 	tkMessageBox.showwarning("Attention!", "Your chart and ini files were created. A new window will pop for the conversion of the midi file into ogg, so that you can hear it on Clone Hero.\n\nClick 'File -> Render to ogg' and select the directory '" + SONG_NAME + "' as output.\n\nThe file must be named 'song.ogg', don't forget to rename it after it renders.\n\nYes this is very lazy of me, life is way too short.")
 	subprocess.call('keepy/bin/x64/KeppyMIDIConverter.exe "' + filename.replace('/', '\\') + '"')
@@ -152,8 +152,14 @@ for counter in range(1, len(tracks)):
 	track = tracks[counter]
 	Radiobutton(window, text=track.name + '(' + str(len(track)) + ' notes)', variable=choice, value=counter).pack(anchor=W)
 	counter += 1 
+Label(window, text="Section size:").pack(anchor=W)
+sChoice = IntVar()
+sChoice.set(1)
+for counter in range(1, 5):
+	r = Radiobutton(window, text=str(counter), variable=sChoice, value=counter)
+	r.pack(anchor=W)
 
-b = Button(window, text="Generate", command=lambda: generateSong(mid, tracks[choice.get()], window.filename))
+b = Button(window, text="Generate", command=lambda: generateSong(mid, tracks[choice.get()], sChoice.get(), window.filename))
 b.pack()
 
 b = Button(window, text="Open a different midi", command=restart)
