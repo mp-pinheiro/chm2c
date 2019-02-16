@@ -39,7 +39,7 @@ Something is wrong with the 'song.ogg' file. Did you render the ogg file? Did yo
 There are a couple of possible problems that may happen. Take a look at the list below.
 
 ### Out of tempo / unsynced 
-The program is ready to deal with most standardly written songs. That means 4/4, constant tempo songs. The weirder the midi structure, the bigger the chance of the program getting lost. Tempo changes *may* work fine, while time signature changes won't work what so ever. The way notes are placed is very dependent on the time signature. If you want to implement this, feel free to do so, I'll take a look at your code and merge it.
+The program is ready to deal with most standardly written songs. That means 4/4, constant tempo songs. The weirder the midi structure, the bigger the chance of the program getting lost. Tempo changes *may* work fine, while time signature changes won't work what so ever. The way notes are placed is very dependent on the time signature. If you want to implement this, feel free to do so, I'll take a look at your code and merge it. Another prime suspect for out of sync notes is the Midi Driver. Check if your Windows Midi Driver is working properly.
 
 ### Weird notes / same part with different notes
 The algorithm for placing notes is far from perfect. If weird notes are the only problem, try changing the section size. The ways notes are spread depends on how they're read. If a group of notes has a wide range of pitches, a smaller section is better, for similar pitches, bigger sections are better. This means that if a song part is interpreted in different section, it may have different notes on Clone Hero. I'm open to ideas for improving the algorithm!
