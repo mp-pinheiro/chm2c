@@ -134,6 +134,9 @@ window = Tk()
 window.title('chm2c')
 window.filename = tkFileDialog.askopenfilename(initialdir = "/", title = "Select a midi file", filetypes = (("midi files","*.mid"),),)
 
+if not window.filename:
+	os._exit(1)
+
 SONG_NAME = str(window.filename.split('/')[-1:][0].replace('.mid', '')) # I hate this but meh
 
 w = Label(window, text="Select one of the midi tracks:")
