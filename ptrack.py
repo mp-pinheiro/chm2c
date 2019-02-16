@@ -88,7 +88,7 @@ class Track:
 		#print(sectionSize, newSectionSize)
 		return (newSectionSize-1)//5 > (sectionSize-1)//5
 
-	def generateChart(self):
+	def generateChart(self, sectionSizeMod):
 		chart = ''
 
 		if self.signature:
@@ -97,7 +97,7 @@ class Track:
 			numerator, denominator = 4, 4
 		#tempo = mido.bpm2tempo(self.tempo)
 		compassSize = numerator * self.ticksPerBeat
-		sectionSize = numerator * compassSize
+		sectionSize = compassSize * sectionSizeMod
 		sectionNotes = []
 		lastCompass = 1
 
